@@ -33,7 +33,7 @@ What follows is just a minimum example to demonstrate the concept. Have a look a
   hosts: localhost
   roles:
   - role: neoloc.squid
-  	squid_configure: true
+    squid_configure: true
     squid_cfg:
       acl:
         myhosts:
