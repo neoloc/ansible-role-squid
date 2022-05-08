@@ -1,0 +1,15 @@
+{% import 'squid.macros.j2' as squid_macros -%}
+
+# {{ ansible_managed }}
+
+{% block new %}
+{% for directive in squid.cfg|dict2items -%}
+{% if directive.key == 'acl' -%}
+{% for acl in directive.value|dict2items -%}
+{{ squid_macros.directive(directive.key + " " + acl.key, acl.value) }}
+{% endfor -%}
+{% else -%}
+{{ squid_macros.directive(directive.key, directive.value) }}
+{% endif -%}
+{% endfor -%}
+{% endblock %}

@@ -1,0 +1,10 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+squid_configure: false
+squid_state: present
+squid_cfg_template: squid.server.conf.j2
+squid_cfg: {}
+
+...
+

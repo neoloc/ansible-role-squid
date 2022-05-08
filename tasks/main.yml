@@ -1,0 +1,40 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: configure squid
+  block:
+    - name: squid is present
+      package:
+        name: squid
+
+    - name: debug squid_cfg_template
+      debug: var=squid_cfg_template
+      tags:
+      - never
+      - debug
+
+    - name: check config variables
+      assert:
+        that:
+        - squid.cfg.acl is defined
+        - squid.cfg.http_access is defined
+        - squid.cfg|type_debug == 'dict'
+
+    - name: generate squid configuration
+      template:
+        src: "{{ squid_cfg_template }}"
+        dest: /etc/squid/squid.conf
+        mode: '644'
+        backup: true
+        validate: squid -k parse -f %s
+      notify: reload squid
+
+    - name: start and enable squid
+      service:
+        name: squid
+        state: started
+        enabled: true
+      register: _squid_has_started
+  when: squid_configure == true
+  tags: squid
+...

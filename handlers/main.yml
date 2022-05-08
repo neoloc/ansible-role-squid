@@ -1,0 +1,10 @@
+# vim: set ft=yaml ts=2 expandtab:
+---
+
+- name: reload squid
+  service:
+    name: squid
+    state: reloaded
+  when: not _squid_has_started.changed
+
+...
