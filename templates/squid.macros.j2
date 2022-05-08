@@ -1,10 +1,9 @@
-{%- macro directive(key, value) %}
-{% if value|type_debug == 'list' %}
-
+{% macro directive(key, value) -%}
+{% if value|type_debug == 'list' -%}
 {% for v in value -%}
 {{ key }} {{ v }}
 {% endfor -%}
 {% else -%}
 {{ key }} {{ value }}
-{%- endif -%}
+{% endif -%}
 {% endmacro -%}
