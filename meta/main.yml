@@ -3,6 +3,7 @@
 
 galaxy_info:
   author: neoloc
+  role_name: squid
   description: Ansible role to configure the squid proxy
   license: GPLv3
   min_ansible_version: 2.9
