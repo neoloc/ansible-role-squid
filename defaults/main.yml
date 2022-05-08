@@ -5,6 +5,6 @@ squid_configure: false
 squid_state: present
 squid_cfg_template: squid.server.conf.j2
 squid_cfg: {}
-
+squid_path: /usr/sbin/squid
 ...
 

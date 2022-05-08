@@ -26,7 +26,7 @@
         dest: /etc/squid/squid.conf
         mode: '644'
         backup: true
-        validate: squid -k parse -f %s
+        validate: "{{ squid_path }} -k parse -f %s"
       notify: reload squid
 
     - name: start and enable squid
